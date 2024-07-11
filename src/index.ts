@@ -12,6 +12,7 @@ interface Draft {
 type TranslationDraft = Record<string, Translation> & Draft
 type Translation = Record<string, string>;
 
+// ALWAYS RUN NPM PACKAGE BEFORE PUSHING
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 Run()
 

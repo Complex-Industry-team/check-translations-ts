@@ -24916,37 +24916,799 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 6144:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ 1622:
+/***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core = __importStar(__nccwpck_require__(2186));
-core.info('hello world!');
+exports.LANGUAGES_LIST = void 0;
+exports.LANGUAGES_LIST = {
+    aa: {
+        name: 'Afar',
+        nativeName: 'Afaraf',
+    },
+    ab: {
+        name: 'Abkhaz',
+        nativeName: 'аҧсуа бызшәа',
+    },
+    ae: {
+        name: 'Avestan',
+        nativeName: 'avesta',
+    },
+    af: {
+        name: 'Afrikaans',
+        nativeName: 'Afrikaans',
+    },
+    ak: {
+        name: 'Akan',
+        nativeName: 'Akan',
+    },
+    am: {
+        name: 'Amharic',
+        nativeName: 'አማርኛ',
+    },
+    an: {
+        name: 'Aragonese',
+        nativeName: 'aragonés',
+    },
+    ar: {
+        name: 'Arabic',
+        nativeName: 'اَلْعَرَبِيَّةُ',
+    },
+    as: {
+        name: 'Assamese',
+        nativeName: 'অসমীয়া',
+    },
+    av: {
+        name: 'Avaric',
+        nativeName: 'авар мацӀ',
+    },
+    ay: {
+        name: 'Aymara',
+        nativeName: 'aymar aru',
+    },
+    az: {
+        name: 'Azerbaijani',
+        nativeName: 'azərbaycan dili',
+    },
+    ba: {
+        name: 'Bashkir',
+        nativeName: 'башҡорт теле',
+    },
+    be: {
+        name: 'Belarusian',
+        nativeName: 'беларуская мова',
+    },
+    bg: {
+        name: 'Bulgarian',
+        nativeName: 'български език',
+    },
+    bi: {
+        name: 'Bislama',
+        nativeName: 'Bislama',
+    },
+    bm: {
+        name: 'Bambara',
+        nativeName: 'bamanankan',
+    },
+    bn: {
+        name: 'Bengali',
+        nativeName: 'বাংলা',
+    },
+    bo: {
+        name: 'Tibetan',
+        nativeName: 'བོད་ཡིག',
+    },
+    br: {
+        name: 'Breton',
+        nativeName: 'brezhoneg',
+    },
+    bs: {
+        name: 'Bosnian',
+        nativeName: 'bosanski jezik',
+    },
+    ca: {
+        name: 'Catalan',
+        nativeName: 'Català',
+    },
+    ce: {
+        name: 'Chechen',
+        nativeName: 'нохчийн мотт',
+    },
+    ch: {
+        name: 'Chamorro',
+        nativeName: 'Chamoru',
+    },
+    co: {
+        name: 'Corsican',
+        nativeName: 'corsu',
+    },
+    cr: {
+        name: 'Cree',
+        nativeName: 'ᓀᐦᐃᔭᐍᐏᐣ',
+    },
+    cs: {
+        name: 'Czech',
+        nativeName: 'čeština',
+    },
+    cu: {
+        name: 'Old Church Slavonic',
+        nativeName: 'ѩзыкъ словѣньскъ',
+    },
+    cv: {
+        name: 'Chuvash',
+        nativeName: 'чӑваш чӗлхи',
+    },
+    cy: {
+        name: 'Welsh',
+        nativeName: 'Cymraeg',
+    },
+    da: {
+        name: 'Danish',
+        nativeName: 'dansk',
+    },
+    de: {
+        name: 'German',
+        nativeName: 'Deutsch',
+    },
+    dv: {
+        name: 'Divehi',
+        nativeName: 'ދިވެހި',
+    },
+    dz: {
+        name: 'Dzongkha',
+        nativeName: 'རྫོང་ཁ',
+    },
+    ee: {
+        name: 'Ewe',
+        nativeName: 'Eʋegbe',
+    },
+    el: {
+        name: 'Greek',
+        nativeName: 'Ελληνικά',
+    },
+    en: {
+        name: 'English',
+        nativeName: 'English',
+    },
+    eo: {
+        name: 'Esperanto',
+        nativeName: 'Esperanto',
+    },
+    es: {
+        name: 'Spanish',
+        nativeName: 'Español',
+    },
+    et: {
+        name: 'Estonian',
+        nativeName: 'eesti',
+    },
+    eu: {
+        name: 'Basque',
+        nativeName: 'euskara',
+    },
+    fa: {
+        name: 'Persian',
+        nativeName: 'فارسی',
+    },
+    ff: {
+        name: 'Fula',
+        nativeName: 'Fulfulde',
+    },
+    fi: {
+        name: 'Finnish',
+        nativeName: 'suomi',
+    },
+    fj: {
+        name: 'Fijian',
+        nativeName: 'vosa Vakaviti',
+    },
+    fo: {
+        name: 'Faroese',
+        nativeName: 'føroyskt',
+    },
+    fr: {
+        name: 'French',
+        nativeName: 'Français',
+    },
+    fy: {
+        name: 'Western Frisian',
+        nativeName: 'Frysk',
+    },
+    ga: {
+        name: 'Irish',
+        nativeName: 'Gaeilge',
+    },
+    gd: {
+        name: 'Scottish Gaelic',
+        nativeName: 'Gàidhlig',
+    },
+    gl: {
+        name: 'Galician',
+        nativeName: 'galego',
+    },
+    gn: {
+        name: 'Guaraní',
+        nativeName: "Avañe'ẽ",
+    },
+    gu: {
+        name: 'Gujarati',
+        nativeName: 'ગુજરાતી',
+    },
+    gv: {
+        name: 'Manx',
+        nativeName: 'Gaelg',
+    },
+    ha: {
+        name: 'Hausa',
+        nativeName: 'هَوُسَ',
+    },
+    he: {
+        name: 'Hebrew',
+        nativeName: 'עברית',
+    },
+    hi: {
+        name: 'Hindi',
+        nativeName: 'हिन्दी',
+    },
+    ho: {
+        name: 'Hiri Motu',
+        nativeName: 'Hiri Motu',
+    },
+    hr: {
+        name: 'Croatian',
+        nativeName: 'Hrvatski',
+    },
+    ht: {
+        name: 'Haitian',
+        nativeName: 'Kreyòl ayisyen',
+    },
+    hu: {
+        name: 'Hungarian',
+        nativeName: 'magyar',
+    },
+    hy: {
+        name: 'Armenian',
+        nativeName: 'Հայերեն',
+    },
+    hz: {
+        name: 'Herero',
+        nativeName: 'Otjiherero',
+    },
+    ia: {
+        name: 'Interlingua',
+        nativeName: 'Interlingua',
+    },
+    id: {
+        name: 'Indonesian',
+        nativeName: 'Bahasa Indonesia',
+    },
+    ie: {
+        name: 'Interlingue',
+        nativeName: 'Interlingue',
+    },
+    ig: {
+        name: 'Igbo',
+        nativeName: 'Asụsụ Igbo',
+    },
+    ii: {
+        name: 'Nuosu',
+        nativeName: 'ꆈꌠ꒿ Nuosuhxop',
+    },
+    ik: {
+        name: 'Inupiaq',
+        nativeName: 'Iñupiaq',
+    },
+    io: {
+        name: 'Ido',
+        nativeName: 'Ido',
+    },
+    is: {
+        name: 'Icelandic',
+        nativeName: 'Íslenska',
+    },
+    it: {
+        name: 'Italian',
+        nativeName: 'Italiano',
+    },
+    iu: {
+        name: 'Inuktitut',
+        nativeName: 'ᐃᓄᒃᑎᑐᑦ',
+    },
+    ja: {
+        name: 'Japanese',
+        nativeName: '日本語',
+    },
+    jv: {
+        name: 'Javanese',
+        nativeName: 'basa Jawa',
+    },
+    ka: {
+        name: 'Georgian',
+        nativeName: 'ქართული',
+    },
+    kg: {
+        name: 'Kongo',
+        nativeName: 'Kikongo',
+    },
+    ki: {
+        name: 'Kikuyu',
+        nativeName: 'Gĩkũyũ',
+    },
+    kj: {
+        name: 'Kwanyama',
+        nativeName: 'Kuanyama',
+    },
+    kk: {
+        name: 'Kazakh',
+        nativeName: 'қазақ тілі',
+    },
+    kl: {
+        name: 'Kalaallisut',
+        nativeName: 'kalaallisut',
+    },
+    km: {
+        name: 'Khmer',
+        nativeName: 'ខេមរភាសា',
+    },
+    kn: {
+        name: 'Kannada',
+        nativeName: 'ಕನ್ನಡ',
+    },
+    ko: {
+        name: 'Korean',
+        nativeName: '한국어',
+    },
+    kr: {
+        name: 'Kanuri',
+        nativeName: 'Kanuri',
+    },
+    ks: {
+        name: 'Kashmiri',
+        nativeName: 'कश्मीरी',
+    },
+    ku: {
+        name: 'Kurdish',
+        nativeName: 'Kurdî',
+    },
+    kv: {
+        name: 'Komi',
+        nativeName: 'коми кыв',
+    },
+    kw: {
+        name: 'Cornish',
+        nativeName: 'Kernewek',
+    },
+    ky: {
+        name: 'Kyrgyz',
+        nativeName: 'Кыргызча',
+    },
+    la: {
+        name: 'Latin',
+        nativeName: 'latine',
+    },
+    lb: {
+        name: 'Luxembourgish',
+        nativeName: 'Lëtzebuergesch',
+    },
+    lg: {
+        name: 'Ganda',
+        nativeName: 'Luganda',
+    },
+    li: {
+        name: 'Limburgish',
+        nativeName: 'Limburgs',
+    },
+    ln: {
+        name: 'Lingala',
+        nativeName: 'Lingála',
+    },
+    lo: {
+        name: 'Lao',
+        nativeName: 'ພາສາລາວ',
+    },
+    lt: {
+        name: 'Lithuanian',
+        nativeName: 'lietuvių kalba',
+    },
+    lu: {
+        name: 'Luba-Katanga',
+        nativeName: 'Kiluba',
+    },
+    lv: {
+        name: 'Latvian',
+        nativeName: 'latviešu valoda',
+    },
+    mg: {
+        name: 'Malagasy',
+        nativeName: 'fiteny malagasy',
+    },
+    mh: {
+        name: 'Marshallese',
+        nativeName: 'Kajin M̧ajeļ',
+    },
+    mi: {
+        name: 'Māori',
+        nativeName: 'te reo Māori',
+    },
+    mk: {
+        name: 'Macedonian',
+        nativeName: 'македонски јазик',
+    },
+    ml: {
+        name: 'Malayalam',
+        nativeName: 'മലയാളം',
+    },
+    mn: {
+        name: 'Mongolian',
+        nativeName: 'Монгол хэл',
+    },
+    mr: {
+        name: 'Marathi',
+        nativeName: 'मराठी',
+    },
+    ms: {
+        name: 'Malay',
+        nativeName: 'Bahasa Melayu',
+    },
+    mt: {
+        name: 'Maltese',
+        nativeName: 'Malti',
+    },
+    my: {
+        name: 'Burmese',
+        nativeName: 'ဗမာစာ',
+    },
+    na: {
+        name: 'Nauru',
+        nativeName: 'Dorerin Naoero',
+    },
+    nb: {
+        name: 'Norwegian Bokmål',
+        nativeName: 'Norsk bokmål',
+    },
+    nd: {
+        name: 'Northern Ndebele',
+        nativeName: 'isiNdebele',
+    },
+    ne: {
+        name: 'Nepali',
+        nativeName: 'नेपाली',
+    },
+    ng: {
+        name: 'Ndonga',
+        nativeName: 'Owambo',
+    },
+    nl: {
+        name: 'Dutch',
+        nativeName: 'Nederlands',
+    },
+    nn: {
+        name: 'Norwegian Nynorsk',
+        nativeName: 'Norsk nynorsk',
+    },
+    no: {
+        name: 'Norwegian',
+        nativeName: 'Norsk',
+    },
+    nr: {
+        name: 'Southern Ndebele',
+        nativeName: 'isiNdebele',
+    },
+    nv: {
+        name: 'Navajo',
+        nativeName: 'Diné bizaad',
+    },
+    ny: {
+        name: 'Chichewa',
+        nativeName: 'chiCheŵa',
+    },
+    oc: {
+        name: 'Occitan',
+        nativeName: 'occitan',
+    },
+    oj: {
+        name: 'Ojibwe',
+        nativeName: 'ᐊᓂᔑᓈᐯᒧᐎᓐ',
+    },
+    om: {
+        name: 'Oromo',
+        nativeName: 'Afaan Oromoo',
+    },
+    or: {
+        name: 'Oriya',
+        nativeName: 'ଓଡ଼ିଆ',
+    },
+    os: {
+        name: 'Ossetian',
+        nativeName: 'ирон æвзаг',
+    },
+    pa: {
+        name: 'Panjabi',
+        nativeName: 'ਪੰਜਾਬੀ',
+    },
+    pi: {
+        name: 'Pāli',
+        nativeName: 'पाऴि',
+    },
+    pl: {
+        name: 'Polish',
+        nativeName: 'Polski',
+    },
+    ps: {
+        name: 'Pashto',
+        nativeName: 'پښتو',
+    },
+    pt: {
+        name: 'Portuguese',
+        nativeName: 'Português',
+    },
+    qu: {
+        name: 'Quechua',
+        nativeName: 'Runa Simi',
+    },
+    rm: {
+        name: 'Romansh',
+        nativeName: 'rumantsch grischun',
+    },
+    rn: {
+        name: 'Kirundi',
+        nativeName: 'Ikirundi',
+    },
+    ro: {
+        name: 'Romanian',
+        nativeName: 'Română',
+    },
+    ru: {
+        name: 'Russian',
+        nativeName: 'Русский',
+    },
+    rw: {
+        name: 'Kinyarwanda',
+        nativeName: 'Ikinyarwanda',
+    },
+    sa: {
+        name: 'Sanskrit',
+        nativeName: 'संस्कृतम्',
+    },
+    sc: {
+        name: 'Sardinian',
+        nativeName: 'sardu',
+    },
+    sd: {
+        name: 'Sindhi',
+        nativeName: 'सिन्धी',
+    },
+    se: {
+        name: 'Northern Sami',
+        nativeName: 'Davvisámegiella',
+    },
+    sg: {
+        name: 'Sango',
+        nativeName: 'yângâ tî sängö',
+    },
+    si: {
+        name: 'Sinhala',
+        nativeName: 'සිංහල',
+    },
+    sk: {
+        name: 'Slovak',
+        nativeName: 'slovenčina',
+    },
+    sl: {
+        name: 'Slovenian',
+        nativeName: 'slovenščina',
+    },
+    sm: {
+        name: 'Samoan',
+        nativeName: "gagana fa'a Samoa",
+    },
+    sn: {
+        name: 'Shona',
+        nativeName: 'chiShona',
+    },
+    so: {
+        name: 'Somali',
+        nativeName: 'Soomaaliga',
+    },
+    sq: {
+        name: 'Albanian',
+        nativeName: 'Shqip',
+    },
+    sr: {
+        name: 'Serbian',
+        nativeName: 'српски језик',
+    },
+    ss: {
+        name: 'Swati',
+        nativeName: 'SiSwati',
+    },
+    st: {
+        name: 'Southern Sotho',
+        nativeName: 'Sesotho',
+    },
+    su: {
+        name: 'Sundanese',
+        nativeName: 'Basa Sunda',
+    },
+    sv: {
+        name: 'Swedish',
+        nativeName: 'Svenska',
+    },
+    sw: {
+        name: 'Swahili',
+        nativeName: 'Kiswahili',
+    },
+    ta: {
+        name: 'Tamil',
+        nativeName: 'தமிழ்',
+    },
+    te: {
+        name: 'Telugu',
+        nativeName: 'తెలుగు',
+    },
+    tg: {
+        name: 'Tajik',
+        nativeName: 'тоҷикӣ',
+    },
+    th: {
+        name: 'Thai',
+        nativeName: 'ไทย',
+    },
+    ti: {
+        name: 'Tigrinya',
+        nativeName: 'ትግርኛ',
+    },
+    tk: {
+        name: 'Turkmen',
+        nativeName: 'Türkmençe',
+    },
+    tl: {
+        name: 'Tagalog',
+        nativeName: 'Wikang Tagalog',
+    },
+    tn: {
+        name: 'Tswana',
+        nativeName: 'Setswana',
+    },
+    to: {
+        name: 'Tonga',
+        nativeName: 'faka Tonga',
+    },
+    tr: {
+        name: 'Turkish',
+        nativeName: 'Türkçe',
+    },
+    ts: {
+        name: 'Tsonga',
+        nativeName: 'Xitsonga',
+    },
+    tt: {
+        name: 'Tatar',
+        nativeName: 'татар теле',
+    },
+    tw: {
+        name: 'Twi',
+        nativeName: 'Twi',
+    },
+    ty: {
+        name: 'Tahitian',
+        nativeName: 'Reo Tahiti',
+    },
+    ug: {
+        name: 'Uyghur',
+        nativeName: 'ئۇيغۇرچە‎',
+    },
+    uk: {
+        name: 'Ukrainian',
+        nativeName: 'Українська',
+    },
+    ur: {
+        name: 'Urdu',
+        nativeName: 'اردو',
+    },
+    uz: {
+        name: 'Uzbek',
+        nativeName: 'Ўзбек',
+    },
+    ve: {
+        name: 'Venda',
+        nativeName: 'Tshivenḓa',
+    },
+    vi: {
+        name: 'Vietnamese',
+        nativeName: 'Tiếng Việt',
+    },
+    vo: {
+        name: 'Volapük',
+        nativeName: 'Volapük',
+    },
+    wa: {
+        name: 'Walloon',
+        nativeName: 'walon',
+    },
+    wo: {
+        name: 'Wolof',
+        nativeName: 'Wollof',
+    },
+    xh: {
+        name: 'Xhosa',
+        nativeName: 'isiXhosa',
+    },
+    yi: {
+        name: 'Yiddish',
+        nativeName: 'ייִדיש',
+    },
+    yo: {
+        name: 'Yoruba',
+        nativeName: 'Yorùbá',
+    },
+    za: {
+        name: 'Zhuang',
+        nativeName: 'Saɯ cueŋƅ',
+    },
+    zh: {
+        name: 'Chinese',
+        nativeName: '中文',
+    },
+    zu: {
+        name: 'Zulu',
+        nativeName: 'isiZulu',
+    },
+};
+
+
+/***/ }),
+
+/***/ 3932:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getLanguages = getLanguages;
+exports.getName = getName;
+exports.getAllNames = getAllNames;
+exports.getNativeName = getNativeName;
+exports.getAllNativeNames = getAllNativeNames;
+exports.getCode = getCode;
+exports.getAllCodes = getAllCodes;
+exports.validate = validate;
+const iso639_data_js_1 = __nccwpck_require__(1622);
+function getLanguages(codes = []) {
+    return codes.map(code => ({
+        code,
+        name: getName(code),
+        nativeName: getNativeName(code),
+    }));
+}
+function getName(code) {
+    return validate(code) ? iso639_data_js_1.LANGUAGES_LIST[code].name : '';
+}
+function getAllNames() {
+    return Object.values(iso639_data_js_1.LANGUAGES_LIST).map(l => l.name);
+}
+function getNativeName(code) {
+    return validate(code) ? iso639_data_js_1.LANGUAGES_LIST[code].nativeName : '';
+}
+function getAllNativeNames() {
+    return Object.values(iso639_data_js_1.LANGUAGES_LIST).map(l => l.nativeName);
+}
+function getCode(name) {
+    const code = Object.keys(iso639_data_js_1.LANGUAGES_LIST).find(code => {
+        const language = iso639_data_js_1.LANGUAGES_LIST[code];
+        return (language.name.toLowerCase() === name.toLowerCase() ||
+            language.nativeName.toLowerCase() === name.toLowerCase());
+    });
+    return code ?? '';
+}
+function getAllCodes() {
+    return Object.keys(iso639_data_js_1.LANGUAGES_LIST);
+}
+function validate(code) {
+    return Object.hasOwn(iso639_data_js_1.LANGUAGES_LIST, code);
+}
 
 
 /***/ }),
@@ -26838,12 +27600,167 @@ module.exports = parseParams
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(6144);
-/******/ 	module.exports = __webpack_exports__;
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+var exports = __webpack_exports__;
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __nccwpck_require__(2186);
+const iso639_1 = __nccwpck_require__(3932);
+const fs_1 = __nccwpck_require__(7147);
+const IGNORED_KEYS = (0, core_1.getInput)('ignored-keys').split(' ');
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+Run();
+async function Run() {
+    // Collects all json files in the specified folder and subfolders
+    function collectJsons(dir) {
+        const jsonFiles = [];
+        const files = (0, fs_1.readdirSync)(dir, 'utf-8');
+        for (const file of files) {
+            if (file.startsWith('.'))
+                continue;
+            if ((0, fs_1.lstatSync)(file).isDirectory())
+                jsonFiles.push(...collectJsons(file));
+            else if (file.endsWith('.json'))
+                jsonFiles.push(file);
+        }
+        return jsonFiles;
+    }
+    const jsonFiles = collectJsons('./');
+    const translations = {};
+    let defaultTranslation = null;
+    for (const jsonFile of jsonFiles) {
+        try {
+            const json = JSON.parse((0, fs_1.readFileSync)(jsonFile, 'utf-8'));
+            if (!Array.isArray(json)) {
+                (0, core_1.info)(jsonFile + ' does not contain an array.');
+                continue;
+            }
+            for (const draft of json) {
+                const id = draft.id;
+                if (draft.type != 'translation')
+                    (0, core_1.info)('Draft' + id + ' is not a translation draft.');
+                else {
+                    const translationDraft = draft;
+                    for (const key in translationDraft) {
+                        if (key === 'type' || key === 'id')
+                            continue;
+                        if ((0, iso639_1.validate)(key)) {
+                            translations[key] = translationDraft[key];
+                            (0, core_1.info)('detected translation for ' + (0, iso639_1.getName)(key));
+                        }
+                        else if (key === '*')
+                            defaultTranslation = translationDraft[key];
+                    }
+                }
+            }
+        }
+        catch {
+            (0, core_1.warning)('Unable to get translation content from ' + jsonFile);
+        }
+    }
+    if (defaultTranslation === null) {
+        (0, core_1.setFailed)('Unable to find a default translation!');
+        return;
+    }
+    const resultsTable = [
+        [{ data: 'language', header: true }, { data: 'code', header: true }, { data: 'complete', header: true }, { data: 'Missing keys', header: true }, { data: 'Untranslated keys', header: true }, { data: 'Unused keys', header: true }]
+    ];
+    const incompleteDetails = [];
+    for (const langCode in translations) {
+        (0, core_1.info)('Checking ' + langCode);
+        const missingKeys = [];
+        const untranslatedKeys = [];
+        const excessKeys = [];
+        try {
+            const keys = translations[langCode];
+            for (const defaultKey in defaultTranslation) {
+                if (IGNORED_KEYS.includes(defaultKey))
+                    continue;
+                if (!(defaultKey in keys)) {
+                    missingKeys.push(defaultKey);
+                    (0, core_1.debug)('missing key ' + defaultKey);
+                }
+                else if (defaultTranslation[defaultKey] === keys[defaultKey]) {
+                    untranslatedKeys.push(defaultKey);
+                    (0, core_1.debug)('missing translation for ' + defaultKey);
+                }
+            }
+            for (const translatedKey in keys) {
+                if (IGNORED_KEYS.includes(translatedKey))
+                    continue;
+                if (!(translatedKey in defaultTranslation)) {
+                    excessKeys.push(translatedKey);
+                    (0, core_1.debug)('excess key ' + translatedKey);
+                }
+            }
+            const success = (missingKeys.length == 0 && untranslatedKeys.length == 0) ? '✓🎉' : '✖';
+            //@ts-expect-error dont have a type spec for resultstable yet
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+            resultsTable.push([
+                (0, iso639_1.getName)(langCode),
+                langCode,
+                success,
+                missingKeys.length.toString(),
+                untranslatedKeys.length.toString(),
+                excessKeys.length.toString()
+            ]);
+            if (success === '✖') {
+                incompleteDetails.push({
+                    langCode: langCode,
+                    missingKeys: missingKeys,
+                    untranslatedKeys: untranslatedKeys,
+                    excessKeys: excessKeys
+                });
+            }
+            (0, core_1.info)('missing keys: ' + missingKeys.length.toString());
+            (0, core_1.info)('untranslated keys: ' + untranslatedKeys.length.toString());
+            (0, core_1.info)('excess keys: ' + excessKeys.length.toString());
+        }
+        catch (error) {
+            //@ts-expect-error will fix later
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            (0, core_1.error)(error.message);
+        }
+    }
+    const summary = core_1.summary.addHeading('Translation completeness')
+        .addTable(resultsTable)
+        .addHeading('Incomplete languages');
+    incompleteDetails.forEach(details => {
+        summary.addBreak();
+        summary.addRaw('<h2>' + (0, iso639_1.getName)(details.langCode) + ' (' + details.langCode + ')</h2>');
+        if (details.missingKeys.length > 0) {
+            let missingKeysString = '<ul>';
+            details.missingKeys.forEach(key => {
+                missingKeysString += '<li>' + key + '</li>';
+            });
+            missingKeysString += '</ul>';
+            summary.addDetails('Missing keys', missingKeysString);
+        }
+        if (details.untranslatedKeys.length > 0) {
+            let untranslatedKeyString = '<ul>';
+            details.untranslatedKeys.forEach(key => {
+                untranslatedKeyString += '<li>' + key + '</li>';
+            });
+            untranslatedKeyString += '</ul>';
+            summary.addDetails('Untranslated keys', untranslatedKeyString);
+        }
+        if (details.excessKeys.length > 0) {
+            let excessKeyString = '<ul>';
+            details.excessKeys.forEach(key => {
+                excessKeyString += '<li>' + key + '</li>';
+            });
+            excessKeyString += '</ul>';
+            summary.addDetails('Unused keys', excessKeyString);
+        }
+    });
+    await summary.write();
+}
+
+})();
+
+module.exports = __webpack_exports__;
 /******/ })()
 ;

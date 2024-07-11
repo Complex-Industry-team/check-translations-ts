@@ -13,6 +13,9 @@ export default tseslint.config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    ignores: ["dist/"]
+    ignores: ["dist/"],
+    rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off'
+    }
   },
 );

@@ -26814,8 +26814,7 @@ const core_1 = __nccwpck_require__(2186);
 const fs_1 = __nccwpck_require__(7147);
 const IGNORED_KEYS = (0, core_1.getInput)('ignored-keys').split(' ');
 // ALWAYS RUN NPM PACKAGE BEFORE PUSHING
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-Run();
+void Run();
 async function Run() {
     const langName = new Intl.DisplayNames(['en'], { type: 'language' });
     // Collects all json files in the specified folder and subfolders
@@ -26904,8 +26903,6 @@ async function Run() {
                 }
             }
             const success = (missingKeys.length == 0 && untranslatedKeys.length == 0) ? '✓🎉' : '✖';
-            //@ts-expect-error dont have a type spec for resultstable yet
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             resultsTable.push([
                 langName.of(langCode),
                 langCode,
@@ -26937,8 +26934,10 @@ async function Run() {
         .addHeading('Incomplete languages');
     incompleteDetails.forEach(details => {
         summary.addBreak();
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        summary.addRaw('<h2>' + langName.of(details.langCode) + ' (' + details.langCode + ')</h2>');
+        let lang = langName.of(details.langCode);
+        if (lang === 'pr')
+            lang = 'Pirate (uwu)';
+        summary.addRaw('<h2>' + lang + ' (' + details.langCode + ')</h2>');
         if (details.missingKeys.length > 0) {
             let missingKeysString = '<ul>';
             details.missingKeys.forEach(key => {

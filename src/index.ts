@@ -11,8 +11,7 @@ type TranslationDraft = Record<string, Translation> & Draft
 type Translation = Record<string, string>;
 
 // ALWAYS RUN NPM PACKAGE BEFORE PUSHING
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-Run()
+void Run()
 
 async function Run() {
     const langName = new Intl.DisplayNames(['en'], {type: 'language'});
@@ -75,7 +74,7 @@ async function Run() {
         return
     }
 
-    const resultsTable: unknown = [
+    const resultsTable: SummaryTableRow[] = [
         [{ data: 'language', header: true }, { data: 'code', header: true }, { data: 'complete', header: true }, { data: 'Missing keys', header: true }, { data: 'Untranslated keys', header: true }, { data: 'Unused keys', header: true }]
     ]
     const incompleteDetails = []
@@ -112,10 +111,8 @@ async function Run() {
 
             const success = (missingKeys.length == 0 && untranslatedKeys.length == 0) ? '✓🎉' : '✖'
 
-            //@ts-expect-error dont have a type spec for resultstable yet
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             resultsTable.push([
-                langName.of(langCode),
+                langName.of(langCode)!,
                 langCode,
                 success,
                 missingKeys.length.toString(),
@@ -141,13 +138,15 @@ async function Run() {
     }
 
     const summary = createSummary.addHeading('Translation completeness')
-        .addTable(resultsTable as SummaryTableRow[])
+        .addTable(resultsTable)
         .addHeading('Incomplete languages')
 
     incompleteDetails.forEach(details => {
         summary.addBreak();
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        summary.addRaw('<h2>' + langName.of(details.langCode) + ' (' + details.langCode + ')</h2>');
+        let lang = langName.of(details.langCode)!
+        if (lang === 'pr')
+            lang = 'Pirate (uwu)'
+        summary.addRaw('<h2>' + lang + ' (' + details.langCode + ')</h2>');
 
         if (details.missingKeys.length > 0) {
             let missingKeysString = '<ul>';

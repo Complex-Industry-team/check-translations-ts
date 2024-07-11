@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2023"
+        ],
+        "module": "node16",
+        "target": "es2022",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "moduleResolution": "node16",
+        "rootDir": "./src",
+        "baseUrl": "./",
+        "outDir": "./dist",
+
+        /* Linting */
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "forceConsistentCasingInFileNames": true,
+    },
+    "exclude": ["./dist", "./node_modules"],
+    "include": ["src/", "eslint.config.mjs"]
+}

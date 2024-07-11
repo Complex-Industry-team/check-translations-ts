@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "lint": "eslint src/** --no-ignore",
+    "package": "npx ncc build src/index.ts -o dist --license licenses.txt"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "^8.57.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.16.0"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1"
+  }
+}

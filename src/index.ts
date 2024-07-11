@@ -1,10 +1,8 @@
 import { info, debug, getInput, warning, setFailed, error as logError, summary as createSummary } from "@actions/core"
-import { getName as getLangName, validate } from "./iso639/iso639"
 import { readdirSync, lstatSync, readFileSync } from "fs"
 import { SummaryTableRow } from "@actions/core/lib/summary"
 
 const IGNORED_KEYS = getInput('ignored-keys').split(' ')
-
 interface Draft {
     id: string,
     type: string,
@@ -17,6 +15,8 @@ type Translation = Record<string, string>;
 Run()
 
 async function Run() {
+    const langName = new Intl.DisplayNames(['en'], {type: 'language'});
+
     // Collects all json files in the specified folder and subfolders
     function collectJsons(dir: string) {
         const jsonFiles: string[] = []
@@ -52,12 +52,15 @@ async function Run() {
                     for (const key in translationDraft) {
                         if (key === 'type' || key === 'id')
                             continue
-                        if (validate(key)) {
-                            translations[key] = translationDraft[key]
-                            info('detected translation for ' + getLangName(key))
-                        }
                         else if (key === '*')
                             defaultTranslation = translationDraft[key]
+                        else {
+                            const lang = langName.of(key)
+                            if (lang !== undefined) {
+                                translations[key] = translationDraft[key]
+                                info('detected translation for ' + lang)
+                            }
+                        }
                     }
                 }
             }
@@ -112,7 +115,7 @@ async function Run() {
             //@ts-expect-error dont have a type spec for resultstable yet
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             resultsTable.push([
-                getLangName(langCode),
+                langName.of(langCode),
                 langCode,
                 success,
                 missingKeys.length.toString(),
@@ -143,7 +146,8 @@ async function Run() {
 
     incompleteDetails.forEach(details => {
         summary.addBreak();
-        summary.addRaw('<h2>' + getLangName(details.langCode) + ' (' + details.langCode + ')</h2>');
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        summary.addRaw('<h2>' + langName.of(details.langCode) + ' (' + details.langCode + ')</h2>');
 
         if (details.missingKeys.length > 0) {
             let missingKeysString = '<ul>';

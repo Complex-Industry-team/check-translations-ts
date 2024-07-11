@@ -27611,6 +27611,7 @@ const core_1 = __nccwpck_require__(2186);
 const iso639_1 = __nccwpck_require__(3932);
 const fs_1 = __nccwpck_require__(7147);
 const IGNORED_KEYS = (0, core_1.getInput)('ignored-keys').split(' ');
+// ALWAYS RUN NPM PACKAGE BEFORE PUSHING
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 Run();
 async function Run() {

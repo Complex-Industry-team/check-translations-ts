@@ -24916,6 +24916,102 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ 2553:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getSummaryTable = getSummaryTable;
+exports.getSummaryDetails = getSummaryDetails;
+const core_1 = __nccwpck_require__(2186);
+function getSummaryTable(results) {
+    const resultsTable = [
+        [{ data: 'language', header: true }, { data: 'code', header: true }, { data: 'complete', header: true }, { data: 'Missing keys', header: true }, { data: 'Untranslated keys', header: true }, { data: 'Unused keys', header: true }]
+    ];
+    for (const result of results) {
+        resultsTable.push([
+            result.langDisplay,
+            result.langCode,
+            result.complete ? '✓🎉' : '✖',
+            result.missingKeys.length.toString(),
+            result.untranslatedKeys.length.toString(),
+            result.excessKeys.length.toString()
+        ]);
+    }
+    const summary = core_1.summary.addHeading('Translation completeness')
+        .addTable(resultsTable);
+    return summary.stringify();
+}
+function getSummaryDetails(results) {
+    const summary = core_1.summary.addHeading('Incomplete languages');
+    for (const result of results) {
+        if (result.complete)
+            continue;
+        summary.addBreak();
+        summary.addRaw('<h2>' + result.langDisplay + ' (' + result.langCode + ')</h2>');
+        if (result.missingKeys.length > 0) {
+            let missingKeysString = '<ul>';
+            result.missingKeys.forEach(key => {
+                missingKeysString += '<li>' + key + '</li>';
+            });
+            missingKeysString += '</ul>';
+            summary.addDetails('Missing keys', missingKeysString);
+        }
+        if (result.untranslatedKeys.length > 0) {
+            let untranslatedKeyString = '<ul>';
+            result.untranslatedKeys.forEach(key => {
+                untranslatedKeyString += '<li>' + key + '</li>';
+            });
+            untranslatedKeyString += '</ul>';
+            summary.addDetails('Untranslated keys', untranslatedKeyString);
+        }
+        if (result.excessKeys.length > 0) {
+            let excessKeyString = '<ul>';
+            result.excessKeys.forEach(key => {
+                excessKeyString += '<li>' + key + '</li>';
+            });
+            excessKeyString += '</ul>';
+            summary.addDetails('Unused keys', excessKeyString);
+        }
+    }
+    return summary.stringify();
+}
+
+
+/***/ }),
+
+/***/ 2629:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getLangDisplayName = getLangDisplayName;
+exports.collectJsons = collectJsons;
+const fs_1 = __nccwpck_require__(7147);
+const langName = new Intl.DisplayNames(['en'], { type: 'language' });
+function getLangDisplayName(langCode) {
+    return langName.of(langCode); // this function will not return undefined in default configuration
+}
+// Collects all json files in the specified folder and subfolders
+function collectJsons(dir) {
+    const jsonFiles = [];
+    const files = (0, fs_1.readdirSync)(dir, 'utf-8');
+    for (const file of files) {
+        if (file.startsWith('.'))
+            continue;
+        if ((0, fs_1.lstatSync)(file).isDirectory())
+            jsonFiles.push(...collectJsons(file));
+        else if (file.endsWith('.json'))
+            jsonFiles.push(file);
+    }
+    return jsonFiles;
+}
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -26812,26 +26908,13 @@ var exports = __webpack_exports__;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __nccwpck_require__(2186);
 const fs_1 = __nccwpck_require__(7147);
+const util_1 = __nccwpck_require__(2629);
+const summary_1 = __nccwpck_require__(2553);
 const IGNORED_KEYS = (0, core_1.getInput)('ignored-keys').split(' ');
 // ALWAYS RUN NPM PACKAGE BEFORE PUSHING
 void Run();
 async function Run() {
-    const langName = new Intl.DisplayNames(['en'], { type: 'language' });
-    // Collects all json files in the specified folder and subfolders
-    function collectJsons(dir) {
-        const jsonFiles = [];
-        const files = (0, fs_1.readdirSync)(dir, 'utf-8');
-        for (const file of files) {
-            if (file.startsWith('.'))
-                continue;
-            if ((0, fs_1.lstatSync)(file).isDirectory())
-                jsonFiles.push(...collectJsons(file));
-            else if (file.endsWith('.json'))
-                jsonFiles.push(file);
-        }
-        return jsonFiles;
-    }
-    const jsonFiles = collectJsons('./');
+    const jsonFiles = (0, util_1.collectJsons)('./');
     const translations = {};
     let defaultTranslation = null;
     for (const jsonFile of jsonFiles) {
@@ -26853,11 +26936,8 @@ async function Run() {
                         else if (key === '*')
                             defaultTranslation = translationDraft[key];
                         else {
-                            const lang = langName.of(key);
-                            if (lang !== undefined) {
-                                translations[key] = translationDraft[key];
-                                (0, core_1.info)('detected translation for ' + lang);
-                            }
+                            translations[key] = translationDraft[key];
+                            (0, core_1.info)('detected translation for ' + (0, util_1.getLangDisplayName)(key));
                         }
                     }
                 }
@@ -26871,10 +26951,7 @@ async function Run() {
         (0, core_1.setFailed)('Unable to find a default translation!');
         return;
     }
-    const resultsTable = [
-        [{ data: 'language', header: true }, { data: 'code', header: true }, { data: 'complete', header: true }, { data: 'Missing keys', header: true }, { data: 'Untranslated keys', header: true }, { data: 'Unused keys', header: true }]
-    ];
-    const incompleteDetails = [];
+    const resultsTable = [];
     for (const langCode in translations) {
         (0, core_1.info)('Checking ' + langCode);
         const missingKeys = [];
@@ -26902,23 +26979,14 @@ async function Run() {
                     (0, core_1.debug)('excess key ' + translatedKey);
                 }
             }
-            const success = (missingKeys.length == 0 && untranslatedKeys.length == 0) ? '✓🎉' : '✖';
-            resultsTable.push([
-                langName.of(langCode),
-                langCode,
-                success,
-                missingKeys.length.toString(),
-                untranslatedKeys.length.toString(),
-                excessKeys.length.toString()
-            ]);
-            if (success === '✖') {
-                incompleteDetails.push({
-                    langCode: langCode,
-                    missingKeys: missingKeys,
-                    untranslatedKeys: untranslatedKeys,
-                    excessKeys: excessKeys
-                });
-            }
+            resultsTable.push({
+                langDisplay: (0, util_1.getLangDisplayName)(langCode),
+                langCode: langCode,
+                complete: missingKeys.length == 0 && untranslatedKeys.length == 0 && excessKeys.length == 0,
+                missingKeys: missingKeys,
+                untranslatedKeys: untranslatedKeys,
+                excessKeys: excessKeys
+            });
             (0, core_1.info)('missing keys: ' + missingKeys.length.toString());
             (0, core_1.info)('untranslated keys: ' + untranslatedKeys.length.toString());
             (0, core_1.info)('excess keys: ' + excessKeys.length.toString());
@@ -26929,40 +26997,9 @@ async function Run() {
             (0, core_1.error)(error.message);
         }
     }
-    const summary = core_1.summary.addHeading('Translation completeness')
-        .addTable(resultsTable)
-        .addHeading('Incomplete languages');
-    incompleteDetails.forEach(details => {
-        summary.addBreak();
-        let lang = langName.of(details.langCode);
-        if (lang === 'pr')
-            lang = 'Pirate (uwu)';
-        summary.addRaw('<h2>' + lang + ' (' + details.langCode + ')</h2>');
-        if (details.missingKeys.length > 0) {
-            let missingKeysString = '<ul>';
-            details.missingKeys.forEach(key => {
-                missingKeysString += '<li>' + key + '</li>';
-            });
-            missingKeysString += '</ul>';
-            summary.addDetails('Missing keys', missingKeysString);
-        }
-        if (details.untranslatedKeys.length > 0) {
-            let untranslatedKeyString = '<ul>';
-            details.untranslatedKeys.forEach(key => {
-                untranslatedKeyString += '<li>' + key + '</li>';
-            });
-            untranslatedKeyString += '</ul>';
-            summary.addDetails('Untranslated keys', untranslatedKeyString);
-        }
-        if (details.excessKeys.length > 0) {
-            let excessKeyString = '<ul>';
-            details.excessKeys.forEach(key => {
-                excessKeyString += '<li>' + key + '</li>';
-            });
-            excessKeyString += '</ul>';
-            summary.addDetails('Unused keys', excessKeyString);
-        }
-    });
+    const table = (0, summary_1.getSummaryTable)(resultsTable);
+    const details = (0, summary_1.getSummaryDetails)(resultsTable);
+    const summary = core_1.summary.addRaw(table).addRaw(details);
     await summary.write();
 }
 

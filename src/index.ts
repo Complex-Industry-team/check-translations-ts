@@ -143,9 +143,7 @@ async function Run() {
 
     incompleteDetails.forEach(details => {
         summary.addBreak();
-        let lang = langName.of(details.langCode)!
-        if (lang === 'pr')
-            lang = 'Pirate (uwu)'
+        const lang = langName.of(details.langCode)!
         summary.addRaw('<h2>' + lang + ' (' + details.langCode + ')</h2>');
 
         if (details.missingKeys.length > 0) {

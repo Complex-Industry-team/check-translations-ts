@@ -1,8 +1,8 @@
-import { info, debug, getInput, warning, setFailed, error as logError, summary as createSummary } from "@actions/core"
+import { info, debug, getInput, warning, setFailed, error as logError } from "@actions/core"
 import { readFileSync } from "fs"
 import { Translation, Draft, TranslationDraft, TranslationCheckResult } from "./types"
 import { collectJsons, getLangDisplayName } from "./util"
-import { getSummaryDetails, getSummaryTable } from "./summary"
+import { writeSummaryDetails, writeSummaryTable } from "./summary"
 
 const IGNORED_KEYS = getInput('ignored-keys').split(' ')
 // ALWAYS RUN NPM PACKAGE BEFORE PUSHING
@@ -99,8 +99,6 @@ async function Run() {
         }
     }
 
-    const table = getSummaryTable(resultsTable)
-    const details = getSummaryDetails(resultsTable)
-    const summary = createSummary.addRaw(table).addRaw(details)
-    await summary.write()
+    await writeSummaryTable(resultsTable)
+    await writeSummaryDetails(resultsTable)
 }

@@ -24922,10 +24922,10 @@ exports["default"] = _default;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getSummaryTable = getSummaryTable;
-exports.getSummaryDetails = getSummaryDetails;
+exports.writeSummaryTable = writeSummaryTable;
+exports.writeSummaryDetails = writeSummaryDetails;
 const core_1 = __nccwpck_require__(2186);
-function getSummaryTable(results) {
+async function writeSummaryTable(results) {
     const resultsTable = [
         [{ data: 'language', header: true }, { data: 'code', header: true }, { data: 'complete', header: true }, { data: 'Missing keys', header: true }, { data: 'Untranslated keys', header: true }, { data: 'Unused keys', header: true }]
     ];
@@ -24941,9 +24941,9 @@ function getSummaryTable(results) {
     }
     const summary = core_1.summary.addHeading('Translation completeness')
         .addTable(resultsTable);
-    return summary.stringify();
+    await summary.write();
 }
-function getSummaryDetails(results) {
+async function writeSummaryDetails(results) {
     const summary = core_1.summary.addHeading('Incomplete languages');
     for (const result of results) {
         if (result.complete)
@@ -24975,7 +24975,7 @@ function getSummaryDetails(results) {
             summary.addDetails('Unused keys', excessKeyString);
         }
     }
-    return summary.stringify();
+    await summary.write();
 }
 
 
@@ -26997,10 +26997,8 @@ async function Run() {
             (0, core_1.error)(error.message);
         }
     }
-    const table = (0, summary_1.getSummaryTable)(resultsTable);
-    const details = (0, summary_1.getSummaryDetails)(resultsTable);
-    const summary = core_1.summary.addRaw(table).addRaw(details);
-    await summary.write();
+    await (0, summary_1.writeSummaryTable)(resultsTable);
+    await (0, summary_1.writeSummaryDetails)(resultsTable);
 }
 
 })();

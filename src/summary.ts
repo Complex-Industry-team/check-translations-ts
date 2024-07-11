@@ -2,7 +2,7 @@ import {summary as createSummary} from '@actions/core'
 import { TranslationCheckResult } from './types'
 import { SummaryTableRow } from '@actions/core/lib/summary'
 
-export function getSummaryTable(results: TranslationCheckResult[]) {
+export async function writeSummaryTable(results: TranslationCheckResult[]) {
     const resultsTable: SummaryTableRow[] = [
         [{ data: 'language', header: true }, { data: 'code', header: true }, { data: 'complete', header: true }, { data: 'Missing keys', header: true }, { data: 'Untranslated keys', header: true }, { data: 'Unused keys', header: true }]
     ]
@@ -20,10 +20,10 @@ export function getSummaryTable(results: TranslationCheckResult[]) {
 
     const summary = createSummary.addHeading('Translation completeness')
     .addTable(resultsTable)
-    return summary.stringify()
+    await summary.write()
 }
 
-export function getSummaryDetails(results: TranslationCheckResult[]) {
+export async function writeSummaryDetails(results: TranslationCheckResult[]) {
     const summary = createSummary.addHeading('Incomplete languages')
     for (const result of results) {
         if (result.complete)
@@ -58,6 +58,5 @@ export function getSummaryDetails(results: TranslationCheckResult[]) {
             summary.addDetails('Unused keys', excessKeyString)
         }
     }
-
-    return summary.stringify()
+    await summary.write()
 }

@@ -1,9 +1,9 @@
 import { info, debug, getInput, warning, setFailed, error as logError } from "@actions/core"
-import { readFileSync } from "fs"
+import { readFileSync, writeFileSync } from "fs"
 import { Translation, Draft, TranslationDraft, TranslationCheckResult } from "./types"
 import { getJsonFileNames, getLangDisplayName } from "./util"
 import { writeSummaryDetails, writeSummaryTable } from "./summary"
-import { generateSvgSummary, uploadSvg } from "./svg"
+import { generateSvgSummary } from "./svg"
 
 const IGNORED_KEYS = getInput('ignored-keys').split(' ')
 // ALWAYS RUN NPM PACKAGE BEFORE PUSHING
@@ -104,5 +104,5 @@ async function Run() {
     await writeSummaryDetails(resultsTable)
 
     const svgStr = generateSvgSummary(resultsTable)
-    await uploadSvg(svgStr)
+    writeFileSync('translation-status.svg', svgStr)
 }

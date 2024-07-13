@@ -1,15 +1,16 @@
 import { info, debug, getInput, warning, setFailed, error as logError } from "@actions/core"
 import { readFileSync } from "fs"
 import { Translation, Draft, TranslationDraft, TranslationCheckResult } from "./types"
-import { collectJsons, getLangDisplayName } from "./util"
+import { getJsonFileNames, getLangDisplayName } from "./util"
 import { writeSummaryDetails, writeSummaryTable } from "./summary"
+import { generateSvgSummary, uploadSvg } from "./svg"
 
 const IGNORED_KEYS = getInput('ignored-keys').split(' ')
 // ALWAYS RUN NPM PACKAGE BEFORE PUSHING
 void Run()
 
 async function Run() {
-    const jsonFiles = collectJsons('./')
+    const jsonFiles = getJsonFileNames('./')
     const translations: Record<string, Translation> = {}
     let defaultTranslation = null
     for (const jsonFile of jsonFiles) {
@@ -101,4 +102,7 @@ async function Run() {
 
     await writeSummaryTable(resultsTable)
     await writeSummaryDetails(resultsTable)
+
+    const svgStr = generateSvgSummary(resultsTable)
+    await uploadSvg(svgStr)
 }

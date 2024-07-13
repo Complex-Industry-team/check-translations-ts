@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: Complex-Industry-team/check-translations@v2
+      - uses: Complex-Industry-team/check-translations-ts@main
         with: 
           ignored-keys: draft_complex_industri_maincategory_title draft_industry_budget00_title
 ```

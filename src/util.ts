@@ -6,14 +6,14 @@ export function getLangDisplayName(langCode: string) {
 }
 
 // Collects all json files in the specified folder and subfolders
-export function collectJsons(dir: string) {
+export function getJsonFileNames(dir: string) {
     const jsonFiles: string[] = []
     const files = readdirSync(dir, 'utf-8')
     for (const file of files) {
         if (file.startsWith('.'))
             continue
         if (lstatSync(file).isDirectory())
-            jsonFiles.push(...collectJsons(file))
+            jsonFiles.push(...getJsonFileNames(file))
         else if (file.endsWith('.json'))
             jsonFiles.push(file)
     }

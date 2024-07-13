@@ -24981,45 +24981,6 @@ async function writeSummaryDetails(results) {
 
 /***/ }),
 
-/***/ 5631:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.generateSvgSummary = generateSvgSummary;
-function getCell(val) {
-    return '<td>' + val + '</td>';
-}
-function generateSvgSummary(results) {
-    const headers = [
-        'Language',
-        'Code',
-        'Complete',
-        'Missing keys',
-        'Untranslated keys',
-        'Excess keys'
-    ];
-    const tableHeaderStr = `<tr><th>${headers.join('</th><th>')}</th></tr>`;
-    let tableBodyStr = '';
-    for (const result of results) {
-        tableBodyStr += '<tr>';
-        tableBodyStr += getCell(result.langDisplay);
-        tableBodyStr += getCell(result.langCode);
-        tableBodyStr += getCell(result.complete ? '✓🎉' : '✖');
-        tableBodyStr += getCell(result.missingKeys.length.toString());
-        tableBodyStr += getCell(result.untranslatedKeys.length.toString());
-        tableBodyStr += getCell(result.excessKeys.length.toString());
-        tableBodyStr += '</tr>';
-    }
-    const tableStr = `<table>${tableHeaderStr}${tableBodyStr}</table>`;
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg"><foreignObject>${tableStr}</foreignobject></svg>`;
-    return svg;
-}
-
-
-/***/ }),
-
 /***/ 2629:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -26949,7 +26910,6 @@ const core_1 = __nccwpck_require__(2186);
 const fs_1 = __nccwpck_require__(7147);
 const util_1 = __nccwpck_require__(2629);
 const summary_1 = __nccwpck_require__(2553);
-const svg_1 = __nccwpck_require__(5631);
 const IGNORED_KEYS = (0, core_1.getInput)('ignored-keys').split(' ');
 // ALWAYS RUN NPM PACKAGE BEFORE PUSHING
 void Run();
@@ -27039,8 +26999,7 @@ async function Run() {
     }
     await (0, summary_1.writeSummaryTable)(resultsTable);
     await (0, summary_1.writeSummaryDetails)(resultsTable);
-    const svgStr = (0, svg_1.generateSvgSummary)(resultsTable);
-    (0, fs_1.writeFileSync)('translation-status.svg', svgStr);
+    core_1.summary.clear;
 }
 
 })();

@@ -33,7 +33,7 @@ export function generateSvgSummary(results: TranslationCheckResult[]) {
 }
 
 export async function uploadSvg(svgStr: string) {
-    mkdirSync('/complex-pages')
+    //mkdirSync('/complex-pages')
     const client = simpleGit('/complex-pages/')
     await client.clone('https://github.com/Complex-Industry-team/Complex-Industry-team.github.io.git', '.')
     writeFileSync('/complex-pages/translation-status.svg', svgStr)
